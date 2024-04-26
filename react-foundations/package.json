@@ -1,9 +1,6 @@
 {
   "name": "next-react-tutorial",
-  "version": "1.0.0",
-  "repository": "https://github.com/tomhaskell/next-react-tutorial.git",
-  "author": "Tom Haskell <tom@tomhaskell.co.uk>",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "next dev"
   },

@@ -7,14 +7,22 @@
     <script type="text/jsx">
       const app = document.getElementById("app");
 
-      function Header() {
-        return <h1>Innovate. Code. Coffee.</h1>;
+      function Header({title}) {
+        return <h1>{title ? title : 'React'}</h1>;
       }
 
       function HomePage() {
+        const names = ['Alan Turing', 'Isaac Asimov', 'Tony Stark'];
+
         return (
             <div>
                 <Header />
+                <Header title="Innovate. Code. Coffee." />
+                <ul>
+                  {names.map((name) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
             </div>
         );
       }

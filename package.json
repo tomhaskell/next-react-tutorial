@@ -1,0 +1,15 @@
+{
+  "name": "next-react-tutorial",
+  "version": "1.0.0",
+  "repository": "https://github.com/tomhaskell/next-react-tutorial.git",
+  "author": "Tom Haskell <tom@tomhaskell.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "next": "^14.2.3",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  }
+}

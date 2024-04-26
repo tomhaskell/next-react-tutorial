@@ -13,6 +13,12 @@
 
       function HomePage() {
         const names = ['Alan Turing', 'Isaac Asimov', 'Tony Stark'];
+        const [clicks, setClicks] = React.useState(0);
+
+        function handleClick() {
+          console.log("Clicked!")
+          setClicks(clicks+1);
+        }
 
         return (
             <div>
@@ -23,6 +29,7 @@
                     <li key={name}>{name}</li>
                   ))}
                 </ul>
+                <button onClick={handleClick}>Clicked {clicks}</button>
             </div>
         );
       }

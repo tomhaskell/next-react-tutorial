@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+import sql from './db.js';
 import {
   CustomerField,
   CustomersTableType,
@@ -19,13 +19,13 @@ export async function fetchRevenue() {
     // Don't do this in production :)
 
     // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed:', data);
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch revenue data.');
@@ -41,7 +41,7 @@ export async function fetchLatestInvoices() {
       ORDER BY invoices.date DESC
       LIMIT 5`;
 
-    const latestInvoices = data.rows.map((invoice) => ({
+    const latestInvoices = data.map((invoice) => ({
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
@@ -70,10 +70,10 @@ export async function fetchCardData() {
       invoiceStatusPromise,
     ]);
 
-    const numberOfInvoices = Number(data[0].rows[0].count ?? '0');
-    const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
-    const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
-    const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
+    const numberOfInvoices = Number(data[0][0].count ?? '0');
+    const numberOfCustomers = Number(data[1][0].count ?? '0');
+    const totalPaidInvoices = formatCurrency(data[2][0].paid ?? '0');
+    const totalPendingInvoices = formatCurrency(data[2][0].pending ?? '0');
 
     return {
       numberOfCustomers,
